@@ -2,6 +2,8 @@ package me.yanggang.junit5test;
 
 import org.junit.jupiter.api.*;
 
+import java.util.function.Supplier;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
@@ -12,7 +14,12 @@ class StudyTest {
     void create_new_study_1() {
         Study study = new Study();
         assertNotNull(study);
-        assertEquals(StudyStatus.DRAFT, study.getStatus(), "Study를 처음 만들면 상태값이 DRAFT여야 한다.");
+        assertEquals(StudyStatus.DRAFT, study.getStatus(), new Supplier<String>() {
+            @Override
+            public String get() {
+                return "Study를 처음 만들면 상태값이 DRAFT여야 한다.";
+            }
+        });
     }
 
     @Test
