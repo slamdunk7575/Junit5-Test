@@ -3,6 +3,7 @@ package me.yanggang.junit5test;
 import org.junit.jupiter.api.*;
 
 import javax.swing.text.Style;
+import java.time.Duration;
 import java.util.function.Supplier;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -35,10 +36,17 @@ class StudyTest {
     void create_new_study_3() {
         IllegalArgumentException exception =
             assertThrows(IllegalArgumentException.class, () -> new Study(-10));
-        String message = exception.getMessage();
-        assertEquals("limit은 0보다 커야 한다.", message);
+        assertEquals("limit은 0보다 커야 한다.", exception.getMessage());
     }
 
+    @Test
+    @DisplayName("타임 아웃 테스트")
+    void create_new_study_4() {
+        assertTimeout(Duration.ofMillis(100), () -> {
+            new Study(10);
+            Thread.sleep(300);
+        });
+    }
 
 
     @BeforeAll
