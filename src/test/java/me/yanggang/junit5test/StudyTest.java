@@ -12,7 +12,7 @@ class StudyTest {
     void create_new_study_1() {
         Study study = new Study();
         assertNotNull(study);
-        System.out.println("Create1");
+        assertEquals(StudyStatus.DRAFT, study.getStatus(), "Study를 처음 만들면 상태값이 DRAFT여야 한다.");
     }
 
     @Test
