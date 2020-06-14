@@ -42,7 +42,7 @@ class StudyTest {
     @Test
     @DisplayName("타임 아웃 테스트")
     void create_new_study_4() {
-        assertTimeout(Duration.ofMillis(100), () -> {
+        assertTimeoutPreemptively(Duration.ofMillis(100), () -> {
             new Study(10);
             Thread.sleep(300);
         });
