@@ -2,10 +2,9 @@ package me.yanggang.junit5test;
 
 import org.junit.jupiter.api.*;
 
-import javax.swing.text.Style;
 import java.time.Duration;
-import java.util.function.Supplier;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
@@ -49,6 +48,14 @@ class StudyTest {
 
         // ThreadLocal을 사용하여 별개의 Thread로 테스트 코드를 실행하면 롤백이 안되고 DB에 반영되는 문제가 있음. 스프링 트랜잭션도 ThreadLocal을 기본전략으로 사용함.
     }
+
+    @Test
+    @DisplayName("Assertj 사용해보기")
+    void create_new_study_5() {
+        Study study = new Study(10);
+        assertThat(study.getLimit()).isGreaterThan(0);
+    }
+
 
 
     @BeforeAll
