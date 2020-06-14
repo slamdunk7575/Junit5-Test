@@ -47,7 +47,7 @@ class StudyTest {
             Thread.sleep(300);
         });
 
-        // 스프링 트랜잭션 경우 ThreadLocal을 사용하여 별개의 Thread로 테스트 코드를 실행하면 롤백이 안되고 DB에 반영되는 문제가 있음
+        // ThreadLocal을 사용하여 별개의 Thread로 테스트 코드를 실행하면 롤백이 안되고 DB에 반영되는 문제가 있음. 스프링 트랜잭션도 ThreadLocal을 기본전략으로 사용함.
     }
 
 
