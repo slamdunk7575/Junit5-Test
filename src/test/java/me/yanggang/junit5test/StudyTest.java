@@ -1,6 +1,9 @@
 package me.yanggang.junit5test;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.condition.DisabledOnOs;
+import org.junit.jupiter.api.condition.EnabledOnOs;
+import org.junit.jupiter.api.condition.OS;
 
 import javax.swing.text.Style;
 import java.time.Duration;
@@ -29,6 +32,7 @@ class StudyTest {
 
     @Test
     @DisplayName("스터디 만들기 \uD83E\uDD29")
+    @DisabledOnOs(OS.MAC)
     void create_new_study_2() {
         System.out.println("Create2");
     }
@@ -70,7 +74,7 @@ class StudyTest {
         String test_env = System.getenv("TEST_ENV");
         System.out.println(test_env);
 
-        assumeTrue("yanggang".equalsIgnoreCase(test_env));
+        assumeTrue("LOCAL".equalsIgnoreCase(test_env));
 
         Study study = new Study(10);
         assertThat(study.getLimit()).isGreaterThan(0);
@@ -79,6 +83,7 @@ class StudyTest {
 
     @Test
     @DisplayName("조건에 따라 테스트 실행하기")
+    @EnabledOnOs({OS.MAC, OS.LINUX})
     void create_new_study_7() {
 
         String test_env = System.getenv("TEST_ENV");
