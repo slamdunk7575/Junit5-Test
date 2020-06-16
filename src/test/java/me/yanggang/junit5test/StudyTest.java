@@ -64,7 +64,7 @@ class StudyTest {
         String test_env = System.getenv("TEST_ENV");
         System.out.println(test_env);
 
-        assumeTrue("LOCAL".equalsIgnoreCase(test_env));
+        assumeTrue("yanggang".equalsIgnoreCase(test_env));
 
         Study study = new Study(10);
         assertThat(study.getLimit()).isGreaterThan(0);
