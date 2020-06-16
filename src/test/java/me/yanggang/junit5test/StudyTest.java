@@ -6,6 +6,7 @@ import java.time.Duration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class StudyTest {
@@ -56,6 +57,18 @@ class StudyTest {
         assertThat(study.getLimit()).isGreaterThan(0);
     }
 
+    @Test
+    @DisplayName("조건에 따라 테스트 실행하기")
+    void create_new_study_6() {
+
+        String test_env = System.getenv("TEST_ENV");
+        System.out.println(test_env);
+
+        assumeTrue("LOCAL".equalsIgnoreCase(test_env));
+
+        Study study = new Study(10);
+        assertThat(study.getLimit()).isGreaterThan(0);
+    }
 
 
     @BeforeAll
