@@ -14,12 +14,11 @@ import static org.junit.jupiter.api.Assumptions.assumingThat;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class StudyTest {
 
-    @Test
+    @FastTest
     @DisplayName("스터디 만들기 (~˘▾˘)~ ")
-    @Tag("FAST")
     void create_new_study_1() {
         Study study = new Study(2);
-
+        System.out.println("FAST");
         assertAll(
             () -> assertNotNull(study),
             () -> assertEquals(StudyStatus.DRAFT, study.getStatus(),
@@ -29,14 +28,13 @@ class StudyTest {
     }
  
 
-    @Test
+    @SlowTest
     @DisplayName("스터디 만들기 \uD83E\uDD29")
     // @DisabledOnOs(OS.MAC)
     // @DisabledOnJre(JRE.JAVA_8)
-    @Tag("SLOW")
     @EnabledIfEnvironmentVariable(named = "TEST_ENV", matches = "yanggang")
     void create_new_study_2() {
-        System.out.println("Create2");
+        System.out.println("SLOW");
     }
 
 
