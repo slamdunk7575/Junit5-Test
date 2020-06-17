@@ -16,6 +16,7 @@ class StudyTest {
 
     @Test
     @DisplayName("스터디 만들기 (~˘▾˘)~ ")
+    @Tag("FAST")
     void create_new_study_1() {
         Study study = new Study(2);
 
@@ -26,12 +27,13 @@ class StudyTest {
             () -> assertTrue(study.getLimit() > 0, "스터디의 최대 참석 인원은 0보다 커야  한다.")
         );
     }
-
+ 
 
     @Test
     @DisplayName("스터디 만들기 \uD83E\uDD29")
     // @DisabledOnOs(OS.MAC)
     // @DisabledOnJre(JRE.JAVA_8)
+    @Tag("SLOW")
     @EnabledIfEnvironmentVariable(named = "TEST_ENV", matches = "yanggang")
     void create_new_study_2() {
         System.out.println("Create2");
