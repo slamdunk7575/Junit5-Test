@@ -104,6 +104,13 @@ class StudyTest {
     }
 
 
+    @RepeatedTest(10)
+    void repeatTest(RepetitionInfo repetitionInfo) {
+        System.out.println("TEST " + repetitionInfo.getCurrentRepetition() + "/"
+            + repetitionInfo.getTotalRepetitions());
+    }
+
+
     @BeforeAll
     static void beforeAll() {
         System.out.println("Before All");
