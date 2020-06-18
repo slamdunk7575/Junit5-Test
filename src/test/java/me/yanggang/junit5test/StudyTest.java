@@ -2,6 +2,8 @@ package me.yanggang.junit5test;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.condition.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import javax.swing.text.Style;
 import java.time.Duration;
@@ -104,10 +106,19 @@ class StudyTest {
     }
 
 
-    @RepeatedTest(10)
+    @DisplayName("스터디 만들기")
+    @RepeatedTest(value = 10, name = "{displayName}, {currentRepetition}/{totalRepetitions}")
     void repeatTest(RepetitionInfo repetitionInfo) {
         System.out.println("TEST " + repetitionInfo.getCurrentRepetition() + "/"
             + repetitionInfo.getTotalRepetitions());
+    }
+
+
+    @DisplayName("스터디 만들기")
+    @ParameterizedTest(name = "{index} {displayName} message=0")
+    @ValueSource(strings = {"날씨가", "많이", "더워지고", "있네요."})
+    void parameterizedTest(String message) {
+        System.out.println(message);
     }
 
 
