@@ -13,7 +13,6 @@ import org.junit.jupiter.params.converter.ConvertWith;
 import org.junit.jupiter.params.converter.SimpleArgumentConverter;
 import org.junit.jupiter.params.provider.*;
 
-import javax.swing.text.Style;
 import java.time.Duration;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -23,10 +22,12 @@ import static org.junit.jupiter.api.Assumptions.assumingThat;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class StudyTest {
 
     int value = 1;
 
+    @Order(11)
     @FastTest
     @DisplayName("스터디 만들기 (~˘▾˘)~ ")
     void create_new_study_1() {
@@ -39,8 +40,9 @@ class StudyTest {
             () -> assertTrue(study.getLimit() > 0, "스터디의 최대 참석 인원은 0보다 커야  한다.")
         );
     }
- 
 
+
+    @Order(10)
     @SlowTest
     @DisplayName("스터디 만들기 \uD83E\uDD29")
     // @DisabledOnOs(OS.MAC)
@@ -50,7 +52,7 @@ class StudyTest {
         System.out.println("SLOW");
     }
 
-
+    @Order(9)
     @Test
     @DisplayName("예외 메시지 확인")
     void create_new_study_3() {
@@ -59,7 +61,7 @@ class StudyTest {
         assertEquals("limit은 0보다 커야 한다.", exception.getMessage());
     }
 
-
+    @Order(8)
     @Test
     @DisplayName("타임 아웃 테스트")
     void create_new_study_4() {
@@ -71,7 +73,7 @@ class StudyTest {
         // ThreadLocal을 사용하여 별개의 Thread로 테스트 코드를 실행하면 롤백이 안되고 DB에 반영되는 문제가 있음. 스프링 트랜잭션도 ThreadLocal을 기본전략으로 사용함.
     }
 
-
+    @Order(7)
     @Test
     @DisplayName("Assertj 사용해보기")
     void create_new_study_5() {
@@ -79,7 +81,7 @@ class StudyTest {
         assertThat(study.getLimit()).isGreaterThan(0);
     }
 
-
+    @Order(6)
     @Test
     @DisplayName("조건에 따라 테스트 실행하기")
     void create_new_study_6() {
@@ -94,6 +96,7 @@ class StudyTest {
     }
 
 
+    @Order(5)
     @Test
     @DisplayName("조건에 따라 테스트 실행하기")
     // @EnabledOnOs({OS.MAC, OS.LINUX})
@@ -117,6 +120,7 @@ class StudyTest {
     }
 
 
+    @Order(4)
     @DisplayName("스터디 만들기")
     @RepeatedTest(value = 10, name = "{displayName}, {currentRepetition}/{totalRepetitions}")
     void repeatTest(RepetitionInfo repetitionInfo) {
@@ -125,6 +129,7 @@ class StudyTest {
     }
 
 
+    @Order(3)
     @DisplayName("스터디 만들기")
     @ParameterizedTest(name = "{index} {displayName} message={0}")
     // @ValueSource(strings = {"날씨가", "많이", "더워지고", "있네요."})
@@ -154,6 +159,7 @@ class StudyTest {
     }
 
 
+    @Order(2)
     @FastTest
     @DisplayName("TEST 인스턴스 1")
     void create_new_study_8() {
@@ -162,6 +168,7 @@ class StudyTest {
     }
 
 
+    @Order(1)
     @SlowTest
     @DisplayName("TEST 인스턴스 2")
     void create_new_study_9() {
