@@ -172,12 +172,12 @@ class StudyTest {
 
 
     @BeforeAll
-    static void beforeAll() {
+    void beforeAll() {
         System.out.println("Before All");
     }
 
     @AfterAll
-    static void afterAll() {
+    void afterAll() {
         System.out.println("After All");
     }
 
