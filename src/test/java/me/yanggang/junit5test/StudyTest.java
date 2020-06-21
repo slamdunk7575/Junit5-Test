@@ -2,6 +2,7 @@ package me.yanggang.junit5test;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.condition.*;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.ParameterContext;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.aggregator.AggregateWith;
@@ -20,6 +21,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.junit.jupiter.api.Assumptions.assumingThat;
 
+
+@ExtendWith(FindSlowTestExtension.class)
 // @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 // @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -170,9 +173,11 @@ class StudyTest {
 
 
     @Order(1)
-    @SlowTest
+    @Test
+    // @SlowTest
     // @DisplayName("TEST 인스턴스 2")
-    void create_new_study_9() {
+    void create_new_study_9() throws InterruptedException {
+        Thread.sleep(1005L);
         System.out.println(this);
         System.out.println(value++);
     }
