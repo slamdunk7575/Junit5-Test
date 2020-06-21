@@ -120,8 +120,7 @@ class StudyTest {
     @DisplayName("스터디 만들기")
     @ParameterizedTest(name = "{index} {displayName} message={0}")
     @ValueSource(strings = {"날씨가", "많이", "더워지고", "있네요."})
-    @EmptySource
-    @NullSource
+    @NullAndEmptySource
     void parameterizedTest(String message) {
         System.out.println(message);
     }
