@@ -3,6 +3,9 @@ package me.yanggang.junit5test;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.condition.*;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.converter.ArgumentConversionException;
+import org.junit.jupiter.params.converter.ConvertWith;
+import org.junit.jupiter.params.converter.SimpleArgumentConverter;
 import org.junit.jupiter.params.provider.EmptySource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.NullSource;
@@ -119,10 +122,20 @@ class StudyTest {
 
     @DisplayName("스터디 만들기")
     @ParameterizedTest(name = "{index} {displayName} message={0}")
-    @ValueSource(strings = {"날씨가", "많이", "더워지고", "있네요."})
-    @NullAndEmptySource
-    void parameterizedTest(String message) {
-        System.out.println(message);
+    // @ValueSource(strings = {"날씨가", "많이", "더워지고", "있네요."})
+    @ValueSource(ints = {10, 20, 30, 40})
+    // @NullAndEmptySource
+    void parameterizedTest(@ConvertWith(StudyConverter.class) Study study) {
+        System.out.println(study.getLimit());
+    }
+
+    static class StudyConverter extends SimpleArgumentConverter {
+
+        @Override
+        protected Object convert(Object source, Class<?> targetType) throws ArgumentConversionException {
+            assertEquals(Study.class, targetType, "Can Only Convert to Study");
+            return new Study(Integer.parseInt(source.toString()));
+        }
     }
 
 
