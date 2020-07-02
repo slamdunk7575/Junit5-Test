@@ -4,24 +4,31 @@ import me.yanggang.junit5test.domain.Member;
 import me.yanggang.junit5test.domain.Study;
 import me.yanggang.junit5test.member.MemberService;
 
+import java.util.Optional;
+
 public class StudyService {
 
     private final MemberService memberService;
 
-    private final StudyService studyService;
+    private final StudyRepository studyRepository;
 
-    public StudyService(MemberService memberService, StudyService studyService) {
+    public StudyService(MemberService memberService, StudyRepository studyRepository) {
+        assert memberService != null;
+        assert studyRepository != null;
         this.memberService = memberService;
-        this.studyService = studyService;
+        this.studyRepository = studyRepository;
     }
 
     public Study createNewStudy(Long memberId, Study study) {
-        Member member = memberService.findById(memberId);
-        if(member == null) {
+        Optional<Member> member = memberService.findById(memberId);
+
+        /*if(member == null) {
             throw new IllegalArgumentException("Member doesn't exist for id: '" + member + "'");
         }
-        study.setOwner(member);
+        study.setOwner(member.get());*/
 
-        return study;
+        study.setOwner(member.orElseThrow(() -> new IllegalArgumentException("Member doesn't exist for id: '" + member + "'")));
+
+        return studyRepository.save(study);
     }
 }
