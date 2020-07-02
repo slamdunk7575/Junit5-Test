@@ -44,7 +44,7 @@ class StudyTest {
             () -> assertNotNull(study),
             () -> assertEquals(StudyStatus.DRAFT, study.getStatus(),
                 () -> "Study를 처음 만들면 상태값은 " +  StudyStatus.DRAFT + " 여야 한다."),
-            () -> assertTrue(study.getLimit() > 0, "스터디의 최대 참석 인원은 0보다 커야  한다.")
+            () -> assertTrue(study.getLimitCount() > 0, "스터디의 최대 참석 인원은 0보다 커야  한다.")
         );
     }
 
@@ -85,7 +85,7 @@ class StudyTest {
     @DisplayName("Assertj 사용해보기")
     void create_new_study_5() {
         Study study = new Study(10);
-        assertThat(study.getLimit()).isGreaterThan(0);
+        assertThat(study.getLimitCount()).isGreaterThan(0);
     }
 
     @Order(6)
@@ -99,7 +99,7 @@ class StudyTest {
         assumeTrue("LOCAL".equalsIgnoreCase(test_env));
 
         Study study = new Study(10);
-        assertThat(study.getLimit()).isGreaterThan(0);
+        assertThat(study.getLimitCount()).isGreaterThan(0);
     }
 
 
@@ -116,13 +116,13 @@ class StudyTest {
         assumingThat("LOCAL".equalsIgnoreCase(test_env), () -> {
             System.out.println("LOCAL");
             Study study = new Study(100);
-            assertThat(study.getLimit()).isGreaterThan(0);
+            assertThat(study.getLimitCount()).isGreaterThan(0);
         });
 
         assumingThat("yanggang".equalsIgnoreCase(test_env), () -> {
             System.out.println("yanggang");
             Study study = new Study(10);
-            assertThat(study.getLimit()).isGreaterThan(0);
+            assertThat(study.getLimitCount()).isGreaterThan(0);
         });
     }
 
