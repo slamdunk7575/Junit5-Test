@@ -13,6 +13,7 @@ import javax.swing.text.html.Option;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 
@@ -40,7 +41,7 @@ class StudyServiceTest {
         member.setId(1L);
         member.setEmail("yanggang@email.com");
 
-        when(memberService.findById(1L)).thenReturn(Optional.of(member));
+        when(memberService.findById(any())).thenReturn(Optional.of(member));
 
         Study study = new Study(10, "JAVA Study");
 
