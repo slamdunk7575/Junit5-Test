@@ -42,7 +42,7 @@ class StudyServiceTest {
         member.setId(1L);
         member.setEmail("yanggang@email.com");
 
-        when(memberService.findById(any())).thenReturn(Optional.of(member));
+        /*when(memberService.findById(any())).thenReturn(Optional.of(member));
 
         Study study = new Study(10, "JAVA Study");
 
@@ -56,7 +56,22 @@ class StudyServiceTest {
             memberService.validate(1L);
         });
 
-        memberService.validate(2L);
+        memberService.validate(2L);*/
+
+
+        when(memberService.findById(any()))
+                .thenReturn(Optional.of(member))
+                .thenThrow(new RuntimeException())
+                .thenReturn(Optional.empty());
+
+        Optional<Member> byId = memberService.findById(1L);
+        assertEquals("yanggang@email.com", byId.get().getEmail());
+
+        assertThrows(RuntimeException.class, () -> {
+            memberService.findById(2L);
+        });
+
+        assertEquals(Optional.empty(), memberService.findById(3L));
     }
 
 }
