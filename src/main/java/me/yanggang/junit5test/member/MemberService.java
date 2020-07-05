@@ -7,4 +7,6 @@ import java.util.Optional;
 public interface MemberService {
     // Member findById(Long memberId) throws MemberNotFoundException;
     Optional<Member> findById(Long memberId);
+
+    void validate(Long memberId);
 }
