@@ -14,6 +14,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 
 
@@ -48,6 +49,14 @@ class StudyServiceTest {
         Optional<Member> findByIdMember = memberService.findById(1L);
         assertEquals("yanggang@email.com", memberService.findById(1L).get().getEmail());
         assertEquals("yanggang@email.com", memberService.findById(2L).get().getEmail());
+
+        doThrow(new IllegalArgumentException()).when(memberService).validate(1L);
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            memberService.validate(1L);
+        });
+
+        memberService.validate(2L);
     }
 
 }
