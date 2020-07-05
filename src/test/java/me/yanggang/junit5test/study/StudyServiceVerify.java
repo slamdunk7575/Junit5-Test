@@ -40,12 +40,13 @@ public class StudyServiceVerify {
         assertEquals(member, study.getOwner());
 
         verify(memberService, times(1)).notify(study);
-        verify(memberService, times(1)).notify(member);
+        verifyNoMoreInteractions(memberService);
+        /*verify(memberService, times(1)).notify(member);
         verify(memberService, never()).validate(any());
 
         InOrder inOrder = inOrder(memberService);
         inOrder.verify(memberService).notify(study);
-        inOrder.verify(memberService).notify(member);
+        inOrder.verify(memberService).notify(member);*/
     }
 
 }
