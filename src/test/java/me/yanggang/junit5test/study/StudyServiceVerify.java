@@ -5,6 +5,7 @@ import me.yanggang.junit5test.domain.Study;
 import me.yanggang.junit5test.member.MemberService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -39,7 +40,12 @@ public class StudyServiceVerify {
         assertEquals(member, study.getOwner());
 
         verify(memberService, times(1)).notify(study);
+        verify(memberService, times(1)).notify(member);
         verify(memberService, never()).validate(any());
+
+        InOrder inOrder = inOrder(memberService);
+        inOrder.verify(memberService).notify(study);
+        inOrder.verify(memberService).notify(member);
     }
 
 }
