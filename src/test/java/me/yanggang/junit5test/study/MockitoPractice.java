@@ -41,7 +41,7 @@ public class MockitoPractice {
         // study의 status가 OPENED로 변경됐는지 확인
         assertEquals(StudyStatus.OPENED, study.getStatus());
 
-        // study의 openedDateTime이 null이 아닌지 확
+        // study의 openedDateTime이 null이 아닌지 확인
         assertNotNull(study.getOpenedDateTime());
 
         // memberService의 notify(study)가 호출 됐는지 확인
