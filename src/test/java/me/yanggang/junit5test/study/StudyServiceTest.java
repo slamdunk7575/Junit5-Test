@@ -46,7 +46,8 @@ class StudyServiceTest {
         Study study = new Study(10, "JAVA Study");
 
         Optional<Member> findByIdMember = memberService.findById(1L);
-        assertEquals("yanggang@email.com", findByIdMember.get().getEmail());
+        assertEquals("yanggang@email.com", memberService.findById(1L).get().getEmail());
+        assertEquals("yanggang@email.com", memberService.findById(2L).get().getEmail());
     }
 
 }
