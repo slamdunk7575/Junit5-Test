@@ -6,6 +6,7 @@ import me.yanggang.junit5test.domain.Study;
 import java.util.Optional;
 
 public interface MemberService {
+
     // Member findById(Long memberId) throws MemberNotFoundException;
     Optional<Member> findById(Long memberId);
 

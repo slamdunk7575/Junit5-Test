@@ -41,7 +41,6 @@ class StubbingPractice {
 
         assertNotNull(study.getOwner());
         assertEquals(member, study.getOwner());
-
     }
 
 }

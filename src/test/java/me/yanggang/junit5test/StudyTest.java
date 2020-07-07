@@ -48,7 +48,6 @@ class StudyTest {
         );
     }
 
-
     @Order(10)
     @SlowTest
     @DisplayName("스터디 만들기 \uD83E\uDD29")
@@ -102,7 +101,6 @@ class StudyTest {
         assertThat(study.getLimitCount()).isGreaterThan(0);
     }
 
-
     @Order(5)
     @Test
     @DisplayName("조건에 따라 테스트 실행하기")
@@ -126,7 +124,6 @@ class StudyTest {
         });
     }
 
-
     @Order(4)
     @DisplayName("스터디 만들기")
     @RepeatedTest(value = 10, name = "{displayName}, {currentRepetition}/{totalRepetitions}")
@@ -134,7 +131,6 @@ class StudyTest {
         System.out.println("TEST " + repetitionInfo.getCurrentRepetition() + "/"
             + repetitionInfo.getTotalRepetitions());
     }
-
 
     @Order(3)
     @DisplayName("스터디 만들기")
@@ -155,7 +151,6 @@ class StudyTest {
         }
     }
 
-
     // 하나의 인자를 변환
     static class StudyConverter extends SimpleArgumentConverter {
         @Override
@@ -164,7 +159,6 @@ class StudyTest {
             return new Study(Integer.parseInt(source.toString()));
         }
     }
-
 
     @Order(2)
     @FastTest
@@ -175,7 +169,6 @@ class StudyTest {
         System.out.println(value++);
     }
 
-
     @Order(1)
     @Test
     // @SlowTest
@@ -185,8 +178,6 @@ class StudyTest {
         System.out.println(this);
         System.out.println(value++);
     }
-
-
 
     @BeforeAll
     void beforeAll() {

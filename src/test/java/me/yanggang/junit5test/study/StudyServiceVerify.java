@@ -53,7 +53,6 @@ public class StudyServiceVerify {
         then(memberService).should(times(1)).notify(study);
         then(memberService).shouldHaveNoMoreInteractions();
 
-
         /*verify(memberService, times(1)).notify(member);
         verify(memberService, never()).validate(any());
 
